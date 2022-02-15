@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Spencer Hilton's Favorite Books";
+}
+
+@model BooksViewModel
+
+<h1 class="text-center">Spencer Hilton's Favorite Books</h1>
+
+@foreach (Books b in Model.Books)
+{
+    <h3>@b.Title</h3>
+
+    <ul>
+        <li><b>Author:</b> @b.Author</li>
+        <li><b>Pages:</b> @b.PageCount</li>
+        <li><b>Publisher:</b> @b.Publisher</li>
+        <li><b>Category:</b> @b.Category</li>
+        <li><b>Classification:</b> @b.Classification</li>
+        <li><b>ISBN:</b> @b.Isbn</li>
+        <li><b>Price:</b> $@b.Price</li>
+    </ul>
+
+    <br />
+}
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group me-2" role="group" aria-label="First group" page-blah="Model.PageInfo" page-action="Index">
+    </div>
+</div>
+
+<br />
+
+
+
