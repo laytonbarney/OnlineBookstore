@@ -12,25 +12,31 @@ namespace OnlineBookstore.Pages
     public class ShoppingCartModel : PageModel
     {
         public IBookstoreRepository repo { get; set; }
-        public ShoppingCartModel (IBookstoreRepository temp)
+        public ShoppingCartModel (IBookstoreRepository temp, ShoppingCart sc)
         {
             repo = temp;
+            shoppingcart = sc;
         }
         public ShoppingCart shoppingcart { get; set; }
         public string ReturnUrl { get; set; }
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            shoppingcart = HttpContext.Session.GetJson<ShoppingCart>("shoppingcart") ?? new ShoppingCart();
         }
 
         public IActionResult OnPost(int bookId, string returnUrl)
         {
             Books b = repo.Books.FirstOrDefault(b => b.BookId == bookId);
-            shoppingcart = HttpContext.Session.GetJson<ShoppingCart>("shoppingcart") ?? new ShoppingCart();
+
             shoppingcart.AddItem(b, 1);
 
-            HttpContext.Session.SetJson("shoppingcart", shoppingcart);
+            return RedirectToPage(new { ReturnUrl = returnUrl });
+        }
+
+        public IActionResult OnPostRemove(int bookId, string returnUrl)
+        {
+            shoppingcart.RemoveItem(shoppingcart.Items.First(x => x.Books.BookId == bookId).Books);
+
             return RedirectToPage(new { ReturnUrl = returnUrl });
         }
     }
