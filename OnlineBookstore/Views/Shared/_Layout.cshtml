@@ -6,10 +6,20 @@
     <title>@ViewBag.Title</title>
     <link href="~/lib/css/bootstrap.css" rel="stylesheet" />
     <link href="~/lib/css/StyleSheet.css" rel="stylesheet" />
-    <link href="~/lib/css/fontawesome-iconpicker.min.css" rel="stylesheet" />
+    <link href="~/lib/fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet" />
 </head>
 <body>
-    
+    <div class="bg-dark text-white p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col navbar-brand">Spencer's Book Nook</div>
+                <div class="col-6 text-right">
+                    <vc:cart-summary />
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row m-1 p-1">
 
         <div id="types" class="col-3">
